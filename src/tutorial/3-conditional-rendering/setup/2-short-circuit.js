@@ -3,10 +3,21 @@ import React, { useState } from 'react';
 // ternary operator
 
 const ShortCircuit = () => {
-  // const firstValue = text || 'hello world';
-  // const secondValue = text && 'hello world';
-
-  return <h2>short circuit</h2>;
+  const [text, setText] = useState('')
+  const [isError, setIsError] = useState(false)
+    // const firstValue = text || 'hello world'
+    // const secondValue = text && 'hello world'
+  return (
+    <React.Fragment>
+    {/* <h2>{firstValue}</h2>
+    <h2>value: {secondValue}</h2> if doesnt return the value */}
+    <h1>{text || 'John Doe'}</h1>
+    <button className='btn' onClick={() => setIsError(!isError)}>Toggle Error</button>
+    {isError && <h1>Error...</h1>}
+    {isError ? <p>This is true</p> : <p>This is false</p>}
+    {/* {text && <h1>Hello</h1>} */}
+  </React.Fragment>
+  )
 };
 
 export default ShortCircuit;
