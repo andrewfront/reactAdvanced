@@ -1,7 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
 const ShowHide = () => {
-  return <h2>show/hide</h2>;
+  const [show, setShow] = useState(false)
+  return <React.Fragment>
+          <button className='btn' onClick={() => setShow(!show)}>Toggle Button</button>
+          {show && <Item />}
+    </React.Fragment>
 };
+const Item = () => {
+  const [size, setSize] = useState(window.innerWidth)
+  const checkSize = () => {
+    setSize(window.innerWidth)
+  }
+  useEffect(() => {
+    window.addEventListener('resize', checkSize)
+    return () => {
+      window.removeEventListener('resize', checkSize)
+    }
+  }, [])
+  return (
+    <div style={{marginTop: '20px'}}>
+    <h1>Window</h1>
+    <h2>Size: {size} px</h2>
+    </div>
+  )
+}
 
 export default ShowHide;
